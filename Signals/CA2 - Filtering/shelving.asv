@@ -1,0 +1,33 @@
+clear myIIRfilter;
+
+out = [];
+b = [1.0082,-1.9784,0.97277];
+a = [1,-1.9793,.9801];
+[x,Fs] = audioread('rainbow_road_snip_original.wav');
+[H,F] = freqz(b,a,2^12,Fs);
+plot(F,20*log10(abs(H)),'LikeWidth',2);
+xlim([0,3000]);
+grid on;
+xlabel('
+x = [];
+for t = [1:1:20]
+   x(t) =  cos(2*pi*.422*t);
+end
+
+h = [.0625,.2764,.4182,.2764,.0625];
+out = zeros(size(x));
+
+
+for n = 1:length(x)
+   out(n) = myFIRfilter(h,x(n));
+end
+
+out
+plot(out)
+
+
+Fs = 1; % samples/sec
+[H,F] = freqz(out,1,2^14,Fs);
+plot(F,abs(H),'LineWidth',2);
+xlabel('Frequency [Hz]');
+ylabel('Magnitude [dB]');

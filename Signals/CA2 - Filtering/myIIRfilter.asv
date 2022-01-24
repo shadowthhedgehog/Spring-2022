@@ -1,0 +1,31 @@
+function y = myIIRfilter(b,a,x)
+persistent zx zy Lx Ly;
+
+if isempty(zx)
+   Lx = length(b);
+   Ly = length(a);
+   zx = zeros(size(b));
+   zy = zeros(size(a));
+end
+
+%shift
+for n = Lx:-1:2
+   zx(n) = zx(n-1); 
+end
+for n = Ly:-1:2
+   zy(n) = zy(n-1); 
+end
+
+zx(1) = x;
+
+%multiply and add
+y = 0;
+for n = 1:Lx
+   y = y + b(n) * zx(n); 
+end
+for n = 2:Ly
+   y =  
+end
+
+end
+
