@@ -39,3 +39,11 @@
 % xlabel('Frequency [w]');
 % ylabel('Magnitude');
 % shg;
+
+
+
+syms w n;
+t = [-2:0.01:2];
+f = piecewise(((-pi/4) < x) & (x < 0), (4/pi)*x+1, (0 <= x) & (x < pi/4), ((-4/pi)*x)+1, 0);
+
+x = (1/(2*pi)) * int(f*exp(1i*w*n),-pi,pi)
