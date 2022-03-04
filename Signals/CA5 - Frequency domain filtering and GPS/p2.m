@@ -33,18 +33,31 @@ x = complex(x(1:2:end), x(2:2:end)); % Convert interleaved real-imaginary to com
 % Transform and search
 
 X = fft(x,N); % Compute zero-padded DFT of samples in x
-
 % Begin search
 for i=1:size(MF,2) % For loop over satellites
+    s = zeros(Nh, length(ksearch));
+    ymax = 0; kmax = -1; imax = -1;
+    
   for k=1:length(ksearch) % For loop over cyclic shifts (doppler frequency search)
-      y(ksearch(k)) = ifft(X(ksearch(k))*MF(ksearch(k)));
-    % a. Implement cyclic shift
-    % b. Perform convolution in the frequency domain
-    % c. Inverse transform to the time domain
-    % [Hint: Can to a, b, and c in 1 line of Matlab code.]
-    % d. Trim the startup and ending convolution transients [1 line of code]
-    yt = y(1:Nx+Nh-1); % trim and print
-    % e. Plot result and look for peak, record peak delay and doppler offset
-    plot(Fs,yt);
+        %shift, convolve, inverse FFT
+      y = ifft(circshift(X,ksearch(k)).*MF(:,i));
+        %trim
+      y = y(Nh:2*Nh-1); % trim
+        %add to matrix
+      s(:,k) = abs(y(1:Nh));
+        %calculate time/freq values
+      [ypeak,ipeak] = max(abs(y(1:Nh)));
+      if(ypeak>ymax)
+         ymax = ypeak;
+         imax = ipeak-1;
+         kmax = k;
+      end
   end
+  i
+  imax
+  kmax
+  figure(1); plot(s);
+  figure(2); plot(s.');
+  figure(3); imagesc(s);
+  pause;
 end
