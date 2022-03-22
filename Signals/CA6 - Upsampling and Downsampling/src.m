@@ -14,10 +14,12 @@ xu(1:U:end) = x;
 %create the filter
 
 % Filter Specification
+%fstop = min([(1-fm)/U,1/(2*D)]);
+fm = min([(D/U)*fm,1/2]);
 % Filter order
 N = 101; % Length of filter impulse response (odd integer)
 % FIR Filter Design Procedure
-f1 = (Fs + fm)/2;
+f1 = (fm + fp)/2;
 f2 = (fm - fp)/2;
 L = (N-1)/2;
 n = [-L:L];
@@ -32,12 +34,13 @@ for n = 1:length(xu)
 end
 
     % Calculate new vars
-fstop = min([(1-fm)/U,1/(2*D)]);
-fp = (D/U)*fp;
-fm = min([(D/U)*fm,1/2]);
-Fs = (D/U)*Fs;
 
-sigs = [fp, fm, fstop]
+fp = (D/U)*fp;
+
+Fs = (U/D)*Fs;
+
+sigs = [fp, fm]
+Fs
 
 % downsample the input
 p = zeros(size(x));
@@ -46,6 +49,6 @@ z = x.*p;
 % plot(abs(fftshift(fft(z,2^16)))); hold on;
 % shg;
 y = z(1:D:end);
-plot(abs(fftshift(fft(y,2^16)))); hold off;
+plot(abs(fftshift(fft(y,2^16))));% hold off;
 shg;
 end

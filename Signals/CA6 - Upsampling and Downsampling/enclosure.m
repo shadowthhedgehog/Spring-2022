@@ -1,4 +1,5 @@
-[x,Fs] = audioread('galway11_mono_45sec.wav');
+%[x,Fs] = audioread('galway11_mono_45sec.wav');
+[x,Fs] = audioread('outputca6.wav');
 N = length(x);
 
 % Read in input signal
@@ -59,10 +60,10 @@ figure();
 imagesc(T,F,20*log10(abs(S)),[0 50]);
 colorbar;
 set(gca,'YDir','normal');
-ylim([0 5500]);
+ylim([0 4000]);
 xlabel('Time [seconds]');
 ylabel('Frequency [Hertz]');
-title('Spectrogram of the Input x[n]');
+title('Spectrogram of the Output x[n]');
 grid on;
 
 % subplot(212);
