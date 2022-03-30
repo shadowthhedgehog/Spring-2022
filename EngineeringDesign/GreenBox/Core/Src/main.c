@@ -43,6 +43,8 @@ ADC_HandleTypeDef hadc1;
 
 I2C_HandleTypeDef hi2c1;
 
+uint8__t temp;
+
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
@@ -107,6 +109,7 @@ int main(void)
 
 
 	//get input from sensor
+	DHT11_Start();
 
 
 
