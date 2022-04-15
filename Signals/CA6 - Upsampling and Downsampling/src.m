@@ -1,6 +1,10 @@
 function [y,fp,fm,Fs] = src(x,fp,fm,U,D,Fs)
-%SRC Summary of this function goes here
-%   Detailed explanation goes here
+% x = input signal
+% fp = passing frequency
+% fm = max frequency
+% U = upsample rate
+% D = downsample rate
+% Fs = sample rate
 
 if size(x,1) == 1
    x = transpose(x); 
