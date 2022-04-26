@@ -1,10 +1,10 @@
 NFFT = 2^14;
 freq = [0:NFFT-1]/NFFT - 0.5;
 
-fp = 1/9;
-fs = 2/9;
-Ap = 0.1; % dB
-As = 60; % dB
+fp = .2;
+fs = .25;
+Ap = .05; % dB
+As = 55; % dB
 
 Bp = 10^(Ap/20);
 dp = (Bp-1)/(Bp+1); % pass band ripple
@@ -112,34 +112,34 @@ ylabel('Magnitude');
 legend('Non-Windowed','Windowed');
 ylim([-100 10]);
 
-plot(freq,(abs(fftshift(fft(hd,NFFT)))),'Color',[0.8 0 0.3],'LineWidth',3);
-hold on;
-plot(freq,(abs(fftshift(fft(h ,NFFT)))),'Color',[0.0 0.8 0.3],'LineWidth',3);
-ax = axis;
-plot((fp)*[1 1],ax(3:4),'Color',[0 0.5 0.5],'LineWidth',2);
-plot(-(fp)*[1 1],ax(3:4),'Color',[0 0.5 0.5],'LineWidth',2);
-plot((fs)*[1 1],ax(3:4),'Color',[0 0.5 0.5],'LineWidth',2);
-plot(-(fs)*[1 1],ax(3:4),'Color',[0 0.5 0.5],'LineWidth',2);
-hold off;
-grid on;
-xlabel('Normalized Frequency [cyles/sample]');
-ylabel('Magnitude');
-legend('Non-Windowed','Windowed');
-ylim([-.25 1.2]);
-
-
-plot(freq,unwrap(angle(fftshift(fft(hd,NFFT)))),'Color',[0.8 0 0.3],'LineWidth',3);
-hold on;
-plot(freq,unwrap(angle(fftshift(fft(h ,NFFT)))),'Color',[0.0 0.8 0.3],'LineWidth',3);
-ax = axis;
-plot((fp)*[1 1],ax(3:4),'Color',[0 0.5 0.5],'LineWidth',2);
-plot(-(fp)*[1 1],ax(3:4),'Color',[0 0.5 0.5],'LineWidth',2);
-plot((fs)*[1 1],ax(3:4),'Color',[0 0.5 0.5],'LineWidth',2);
-plot(-(fs)*[1 1],ax(3:4),'Color',[0 0.5 0.5],'LineWidth',2);
-hold off;
-grid on;
-xlabel('Normalized Frequency [cyles/sample]');
-ylabel('Magnitude');
-legend('Non-Windowed','Windowed');
-ylim([-100 10]);
+% plot(freq,(abs(fftshift(fft(hd,NFFT)))),'Color',[0.8 0 0.3],'LineWidth',3);
+% hold on;
+% plot(freq,(abs(fftshift(fft(h ,NFFT)))),'Color',[0.0 0.8 0.3],'LineWidth',3);
+% ax = axis;
+% plot((fp)*[1 1],ax(3:4),'Color',[0 0.5 0.5],'LineWidth',2);
+% plot(-(fp)*[1 1],ax(3:4),'Color',[0 0.5 0.5],'LineWidth',2);
+% plot((fs)*[1 1],ax(3:4),'Color',[0 0.5 0.5],'LineWidth',2);
+% plot(-(fs)*[1 1],ax(3:4),'Color',[0 0.5 0.5],'LineWidth',2);
+% hold off;
+% grid on;
+% xlabel('Normalized Frequency [cyles/sample]');
+% ylabel('Magnitude');
+% legend('Non-Windowed','Windowed');
+% ylim([-.25 1.2]);
+% 
+% 
+% plot(freq,unwrap(angle(fftshift(fft(hd,NFFT)))),'Color',[0.8 0 0.3],'LineWidth',3);
+% hold on;
+% plot(freq,unwrap(angle(fftshift(fft(h ,NFFT)))),'Color',[0.0 0.8 0.3],'LineWidth',3);
+% ax = axis;
+% plot((fp)*[1 1],ax(3:4),'Color',[0 0.5 0.5],'LineWidth',2);
+% plot(-(fp)*[1 1],ax(3:4),'Color',[0 0.5 0.5],'LineWidth',2);
+% plot((fs)*[1 1],ax(3:4),'Color',[0 0.5 0.5],'LineWidth',2);
+% plot(-(fs)*[1 1],ax(3:4),'Color',[0 0.5 0.5],'LineWidth',2);
+% hold off;
+% grid on;
+% xlabel('Normalized Frequency [cyles/sample]');
+% ylabel('Magnitude');
+% legend('Non-Windowed','Windowed');
+% ylim([-100 10]);
 
